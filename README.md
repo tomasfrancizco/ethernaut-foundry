@@ -1,66 +1,76 @@
-## Foundry
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+# Ethernaut - Foundry | by @tomasfrancizco
 
-Foundry consists of:
+In this repo you will find all the solutions for the OpenZeppelin's **Ethernaut** challenges using Foundry.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+There is a brief explanation of what's going on in the Attacker contracts.
 
-## Documentation
+## How is this repo structured?
 
-https://book.getfoundry.sh/
+All examples are for challenge # 4, but the same applies to all of them.
 
-## Usage
+For each Ethernaut's challenge you will find 4 files
 
-### Build
+1. The challenge:
 
-```shell
-$ forge build
+`./src/04_CoinFlip/04_CoinFlip.sol`
+
+2. The attacker contract:
+
+`.src/04_CoinFlip/04_CoinFlipAttacker.sol`
+
+3. The deploy script
+
+`script/04_Deploy.s.sol`
+
+4. The Attack script
+
+`script/04_Attack.s.sol`
+
+Some challenges don't require an attacker contract and can be completed directly through the terminal via external calls. In those cases the `00_Attack.s.sol` has the instructions to do so.
+
+
+## Install and Run
+
+1. Clone this repository
+```
+git clone https://github.com/tomasfrancizco/ethernaut-foundry.git
 ```
 
-### Test
+2. Install Foundry, follow [this link](https://book.getfoundry.sh/getting-started/installation).
 
-```shell
-$ forge test
+3. Install dependencies
+```
+forge install
 ```
 
-### Format
+4. Create `.env` file whit these variables
 
-```shell
-$ forge fmt
+```
+SEPOLIA_RPC_URL=
+PRIVATE_KEY=
 ```
 
-### Gas Snapshots
+5. Deploy Ethernaut's instance and change address on `src/04_CoinFlip/04_CoinFlipAttacker.sol`
 
-```shell
-$ forge snapshot
+```
+address constant COINFLIP_INSTANCE =
 ```
 
-### Anvil
+6. Run deploy command to deploy attacker contract
 
-```shell
-$ anvil
+```
+forge script script/04_Deploy.s.sol:DeployCoinFlipAttacker --private-key $PRIVATE_KEY --rpc-url $SEPOLIA_RPC_URL --broadcast
 ```
 
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+7. Change Attacker's address on `script/04_Attack.s.sol`
+```
+address constant COINFLIP_ATTACKER_INSTANCE =
 ```
 
-### Cast
-
-```shell
-$ cast <subcommand>
+8. Run attack command
+```
+forge script script/04_Attack.s.sol:Attack --private-key $PRIVATE_KEY --rpc-url $SEPOLIA_RPC_URL --broadcast
 ```
 
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+9. Submit instance through Ethernaut's website.
