@@ -32,45 +32,42 @@ Some challenges don't require an attacker contract and can be completed directly
 
 ## Install and Run
 
+To install Foundry, you can check [this link](https://book.getfoundry.sh/getting-started/installation)
+
 1. Clone this repository
 ```
 git clone https://github.com/tomasfrancizco/ethernaut-foundry.git
+cd ethernaut-foundry
+forge build
 ```
 
-2. Install Foundry, follow [this link](https://book.getfoundry.sh/getting-started/installation).
-
-3. Install dependencies
-```
-forge install
-```
-
-4. Create `.env` file whit these variables
+2. Create `.env` file whit these variables
 
 ```
 SEPOLIA_RPC_URL=
 PRIVATE_KEY=
 ```
 
-5. Deploy Ethernaut's instance and change address on `src/04_CoinFlip/04_CoinFlipAttacker.sol`
+3. Deploy Ethernaut's instance and change address on `src/04_CoinFlip/04_CoinFlipAttacker.sol`
 
 ```
 address constant COINFLIP_INSTANCE =
 ```
 
-6. Run deploy command to deploy attacker contract
+4. Run deploy command to deploy attacker contract
 
 ```
 forge script script/04_Deploy.s.sol:DeployCoinFlipAttacker --private-key $PRIVATE_KEY --rpc-url $SEPOLIA_RPC_URL --broadcast
 ```
 
-7. Change Attacker's address on `script/04_Attack.s.sol`
+5. Change Attacker's address on `script/04_Attack.s.sol`
 ```
 address constant COINFLIP_ATTACKER_INSTANCE =
 ```
 
-8. Run attack command
+6. Run attack command
 ```
 forge script script/04_Attack.s.sol:Attack --private-key $PRIVATE_KEY --rpc-url $SEPOLIA_RPC_URL --broadcast
 ```
 
-9. Submit instance through Ethernaut's website.
+7. Submit instance through Ethernaut's website.
