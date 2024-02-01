@@ -49,4 +49,7 @@ address payable challengeInstanceAddress = payable(0x000000000000000000000000000
 forge script script/02_Fallback.s.sol:FallbackAttacker --rpc-url $SEPOLIA_RPC_URL --broadcast
 ```
 
-3. Submit instance through [Ethernaut's website](https://ethernaut.openzeppelin.com/).
+3. Submit instance through [Ethernaut's website](https://ethernaut.openzeppelin.com/)
+
+## Solutions
+
