@@ -36,7 +36,7 @@ SEPOLIA_RPC_URL=
 PRIVATE_KEY=
 ```
 
-1. Deploy Ethernaut's instance from the [site]("https://ethernaut.openzeppelin.com/") and change the instance's address on the corresponding script file.
+1. Deploy Ethernaut's instance from the [site](https://ethernaut.openzeppelin.com/) and change the instance's address on the corresponding script file.
 
 ```
 address payable challengeInstanceAddress = payable(0x0000000000000000000000000000000000000000);
@@ -49,4 +49,4 @@ address payable challengeInstanceAddress = payable(0x000000000000000000000000000
 forge script script/02_Fallback.s.sol:FallbackAttacker --rpc-url $SEPOLIA_RPC_URL --broadcast
 ```
 
-3. Submit instance through [Ethernaut's website]("https://ethernaut.openzeppelin.com/").
+3. Submit instance through [Ethernaut's website](https://ethernaut.openzeppelin.com/).
