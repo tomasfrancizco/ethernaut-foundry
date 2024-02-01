@@ -3,31 +3,19 @@
 
 In this repo you will find all the solutions for the OpenZeppelin's **Ethernaut** challenges using Foundry.
 
-There is a brief explanation of what's going on in the Attacker contracts.
+There is a brief explanation of what's going on in the scripts.
 
 ## How is this repo structured?
 
-All examples are for challenge # 4, but the same applies to all of them.
-
-For each Ethernaut's challenge you will find 4 files
+For each Ethernaut's challenge you will find 2 files
 
 1. The challenge:
 
-`./src/04_CoinFlip/04_CoinFlip.sol`
+`src/00_Challenge.sol`
 
-2. The attacker contract:
+2. The attacker contract/script:
 
-`.src/04_CoinFlip/04_CoinFlipAttacker.sol`
-
-3. The deploy script
-
-`script/04_Deploy.s.sol`
-
-4. The Attack script
-
-`script/04_Attack.s.sol`
-
-Some challenges don't require an attacker contract and can be completed directly through the terminal via external calls. In those cases the `00_Attack.s.sol` has the instructions to do so.
+`script/00_Challenge.s.sol`
 
 
 ## Install and Run
@@ -48,26 +36,17 @@ SEPOLIA_RPC_URL=
 PRIVATE_KEY=
 ```
 
-3. Deploy Ethernaut's instance and change address on `src/04_CoinFlip/04_CoinFlipAttacker.sol`
+1. Deploy Ethernaut's instance from the [site]("https://ethernaut.openzeppelin.com/") and change the instance's address on the corresponding script file.
 
 ```
-address constant COINFLIP_INSTANCE =
+address payable challengeInstanceAddress = payable(0x0000000000000000000000000000000000000000);
 ```
 
-4. Run deploy command to deploy attacker contract
+2. Run script
+   e.g.: first challenge
 
 ```
-forge script script/04_Deploy.s.sol:DeployCoinFlipAttacker --private-key $PRIVATE_KEY --rpc-url $SEPOLIA_RPC_URL --broadcast
+forge script script/02_Fallback.s.sol:FallbackAttacker --rpc-url $SEPOLIA_RPC_URL --broadcast
 ```
 
-5. Change Attacker's address on `script/04_Attack.s.sol`
-```
-address constant COINFLIP_ATTACKER_INSTANCE =
-```
-
-6. Run attack command
-```
-forge script script/04_Attack.s.sol:Attack --private-key $PRIVATE_KEY --rpc-url $SEPOLIA_RPC_URL --broadcast
-```
-
-7. Submit instance through Ethernaut's website.
+3. Submit instance through [Ethernaut's website]("https://ethernaut.openzeppelin.com/").
