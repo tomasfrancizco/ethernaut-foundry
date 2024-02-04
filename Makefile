@@ -6,3 +6,5 @@ coinflip_attack:; @forge script script/03_CoinFlip.s.sol:CoinFlipAttacker --rpc-
 telephone_attack:; @forge script script/04_Telephone.s.sol:TelephoneAttacker --rpc-url $(SEPOLIA_RPC_URL) --broadcast
 token_attack:; @forge script script/05_Token.s.sol:TokenAttacker --rpc-url $(SEPOLIA_RPC_URL) --sender $(EOA_ADDRESS) --broadcast
 delegation_attack:; @forge script script/06_Delegation.s.sol:DelegationAttacker --rpc-url $SEPOLIA_RPC_URL --sender $(EOA_ADDRESS) --broadcast
+force_attack:; @forge script script/07_Force.s.sol:ForceAttacker --rpc-url $(SEPOLIA_RPC_URL) --broadcast
+vault_attack:; @forge script script/08_Vault.s.sol:VaultAttacker --rpc-url $(SEPOLIA_RPC_URL) --broadcast
