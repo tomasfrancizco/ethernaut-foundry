@@ -3,15 +3,19 @@
 pragma solidity ^0.8.19;
 
 import { Script, console } from "forge-std/Script.sol";
+import { HelperConfig } from "./HelperConfig.s.sol";
 import { Fallback } from "../src/01_Fallback.sol";
 
 contract FallbackAttacker is Script {
-
-  address payable challengeInstanceAddress = payable(0xa0fEd194dc31c971d488F09507Eb1dD4C469d658);
-  uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
-  Fallback private challenge = Fallback(challengeInstanceAddress);
   
+  uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
+
   function run() external {
+
+    HelperConfig helperConfig = new HelperConfig();
+    address payable challengeInstanceAddress = payable(helperConfig.instances("Fallback"));
+    Fallback challenge = Fallback(challengeInstanceAddress);
+    
     vm.startBroadcast(deployerPrivateKey);
     
     challenge.contribute{value: 1 wei}();

@@ -3,6 +3,7 @@
 pragma solidity ^0.8.19;
 
 import { Script, console } from "forge-std/Script.sol";
+import { HelperConfig } from "./HelperConfig.s.sol";
 import { CoinFlip } from "../src/03_CoinFlip.sol";
 
 
@@ -23,10 +24,13 @@ contract Attacker {
 
 contract CoinFlipAttacker is Script {
 
-  address payable challengeInstanceAddress = payable(0x260dD640ce54288a0Fbe7A8913c262C46E143973);
   uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
 
   function run() external {
+
+    HelperConfig helperConfig = new HelperConfig();
+    address payable challengeInstanceAddress = payable(helperConfig.instances("CoinFlip"));
+    
     vm.startBroadcast(deployerPrivateKey);
     new Attacker(challengeInstanceAddress);
     vm.stopBroadcast();

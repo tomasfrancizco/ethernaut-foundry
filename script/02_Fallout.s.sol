@@ -3,15 +3,19 @@
 pragma solidity ^0.6.2;
 
 import { Script, console } from "forge-std/Script.sol";
+import { HelperConfig } from "./HelperConfig.s.sol";
 import { Fallout } from "../src/02_Fallout.sol";
 
 contract FalloutAttacker is Script {
 
-  address payable challengeInstanceAddress = payable(0xECA0881C4976ceCdc0E9E6c147BD1CC6D5f42E73);
   uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
-  Fallout private challenge = Fallout(challengeInstanceAddress);
 
   function run() external {
+
+    HelperConfig helperConfig = new HelperConfig();
+    address payable challengeInstanceAddress = payable(helperConfig.instances("Fallout"));
+    Fallout challenge = Fallout(challengeInstanceAddress);
+
     vm.startBroadcast(deployerPrivateKey);
     
     challenge.Fal1out();
