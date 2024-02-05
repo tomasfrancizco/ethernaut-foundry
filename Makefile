@@ -8,3 +8,4 @@ token_attack:; @forge script script/05_Token.s.sol:TokenAttacker --rpc-url $(SEP
 delegation_attack:; @forge script script/06_Delegation.s.sol:DelegationAttacker --rpc-url $SEPOLIA_RPC_URL --sender $(EOA_ADDRESS) --broadcast
 force_attack:; @forge script script/07_Force.s.sol:ForceAttacker --rpc-url $(SEPOLIA_RPC_URL) --broadcast
 vault_attack:; @forge script script/08_Vault.s.sol:VaultAttacker --rpc-url $(SEPOLIA_RPC_URL) --broadcast
+king_attack:; @forge script script/09_King.s.sol:KingAttacker --rpc-url $(SEPOLIA_RPC_URL) --broadcast
