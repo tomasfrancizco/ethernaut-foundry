@@ -6,9 +6,9 @@ import { Script } from "forge-std/Script.sol";
 
 contract HelperConfig is Script {
   
-  mapping (string level => address instance) public instances;
+  mapping (string => address) public instances;
   
-  constructor () {
+  constructor () public {
     instances["Fallback"] = 0xa0fEd194dc31c971d488F09507Eb1dD4C469d658;
     instances["Fallout"] = 0xECA0881C4976ceCdc0E9E6c147BD1CC6D5f42E73;
     instances["CoinFlip"] = 0x260dD640ce54288a0Fbe7A8913c262C46E143973;
