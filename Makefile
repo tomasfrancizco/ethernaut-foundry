@@ -9,3 +9,6 @@ delegation_attack:; @forge script script/06_Delegation.s.sol:DelegationAttacker 
 force_attack:; @forge script script/07_Force.s.sol:ForceAttacker --rpc-url $(SEPOLIA_RPC_URL) --broadcast
 vault_attack:; @forge script script/08_Vault.s.sol:VaultAttacker --rpc-url $(SEPOLIA_RPC_URL) --broadcast
 king_attack:; @forge script script/09_King.s.sol:KingAttacker --rpc-url $(SEPOLIA_RPC_URL) --broadcast
+reentrancy_attack:; @forge script script/10_Reentrancy.s.sol:ReentrancyAttacker --rpc-url $(SEPOLIA_RPC_URL) --sender $(EOA_ADDRESS) --broadcast
+elevator_attack:; @forge script script/11_Elevator.s.sol:ElevatorAttacker --rpc-url $(SEPOLIA_RPC_URL) --broadcast
+privacy_attack:; @forge script script/12_Privacy.s.sol:PrivacyAttacker --rpc-url $(SEPOLIA_RPC_URL) --broadcast
