@@ -2,9 +2,7 @@
 
 pragma solidity >=0.6.2 <=0.8.23;
 
-import { Script } from "forge-std/Script.sol";
-
-contract HelperConfig is Script {
+contract HelperConfig {
   
   mapping (string => address) public instances;
   
