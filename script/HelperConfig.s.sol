@@ -19,5 +19,6 @@ contract HelperConfig {
     instances["Reentrancy"] = 0x48AA3a734156C374F9F07AF48359CF3C4624d83E;
     instances["Elevator"] = 0xD852009b83006Fb4d1eFDf035e708FDA093D0339;
     instances["Privacy"] = 0x3e822f121bEF4fe5289f7AFc6F7Da34e753f4169;
+    instances["GatekeeperOne"] = 0x4974a8d555694ed0Fbd52391DFf4F5e1f83Dc2E4;
   }
 }
