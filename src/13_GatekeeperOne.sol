@@ -6,7 +6,7 @@ contract GatekeeperOne {
   address public entrant;
 
   modifier gateOne() {
-    require(msg.sender != tx.origin);
+    require(msg.sender != tx.origin); // se llama desde otro contrato
     _;
   }
 
