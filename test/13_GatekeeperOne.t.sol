@@ -2,8 +2,8 @@
 
 pragma solidity ^0.8.19;
 
-import { Script, console } from "forge-std/Script.sol";
-import { HelperConfig } from "./HelperConfig.s.sol";
+import { Test, console } from "forge-std/Test.sol";
+import { HelperConfig } from "../script/HelperConfig.s.sol";
 import { GatekeeperOne } from "../src/13_GatekeeperOne.sol";
 
 contract Attacker {
@@ -22,21 +22,23 @@ contract Attacker {
   }
 
 }
+contract GatekeeperOneTest is Test {
 
-contract GatekeeperOneAttacker is Script {
-
-  uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
-
-  function run() external {
-
+  GatekeeperOne challenge;
+  Attacker attacker;
+  address USER = 0x08f88ef7ecD64a2eA1f3887d725F78DDF1bacDF1;
+  
+  function setUp() external {
     HelperConfig helperConfig = new HelperConfig();
     address payable challengeInstanceAddress = payable(helperConfig.instances("GatekeeperOne"));
+    challenge = GatekeeperOne(challengeInstanceAddress);
 
-    vm.startBroadcast(deployerPrivateKey);
-    Attacker attacker = new Attacker(challengeInstanceAddress);
-    attacker.attack();
-
-    vm.stopBroadcast();
+    attacker = new Attacker(challengeInstanceAddress);
   }
 
+  function testRevertWithNoMessage() external {
+    vm.prank(USER);
+    vm.expectRevert();
+    attacker.attack();
+  }
 }
