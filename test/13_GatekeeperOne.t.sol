@@ -31,8 +31,9 @@ contract GatekeeperOneTest is Test {
   function setUp() external {
     HelperConfig helperConfig = new HelperConfig();
     address payable challengeInstanceAddress = payable(helperConfig.instances("GatekeeperOne"));
+    // uint256 forkId = vm.createFork(vm.envString("SEPOLIA_RPC_URL"));
+    // vm.selectFork(forkId);
     challenge = GatekeeperOne(challengeInstanceAddress);
-
     attacker = new Attacker(challengeInstanceAddress);
   }
 

