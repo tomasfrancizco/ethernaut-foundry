@@ -20,5 +20,6 @@ contract HelperConfig {
     instances["Elevator"] = 0xD852009b83006Fb4d1eFDf035e708FDA093D0339;
     instances["Privacy"] = 0x3e822f121bEF4fe5289f7AFc6F7Da34e753f4169;
     instances["GatekeeperOne"] = 0x4974a8d555694ed0Fbd52391DFf4F5e1f83Dc2E4;
+    instances["GatekeeperTwo"] = 0xd9140Ce7Fadfa2a4B6d4347797e18e3bfcDfb0dA;
   }
 }
