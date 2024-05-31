@@ -22,5 +22,6 @@ contract HelperConfig {
     instances["GatekeeperOne"] = 0x4974a8d555694ed0Fbd52391DFf4F5e1f83Dc2E4;
     instances["GatekeeperTwo"] = 0xd9140Ce7Fadfa2a4B6d4347797e18e3bfcDfb0dA;
     instances["NaughtCoin"] = 0x58E561a86ef84b8452f9f2A18E627100A79c28B6;
+    instances["Preservation"] = 0xA913abb2E29db8b8F96ccaE87CebbCd630481D6a;
   }
 }
